@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { MovieCard } from '../components/MovieCard';
+import { ContentHeader } from './ContentHeader';
 import { api } from '../services/api';
 
 import '../styles/content.scss';
@@ -22,7 +23,7 @@ interface MovieProps {
   Runtime: string;
 }
 
-interface ContentProps{
+interface ContentProps {
   genreId:number
 }
 
@@ -44,10 +45,7 @@ export function Content(props:ContentProps) {
 
   return (
     <div className="container">
-        <header>
-          <span className="category">Categoria:<span> {selectedGenre.title}</span></span>
-        </header>
-
+        <ContentHeader className="category" genreTitle={selectedGenre.title} />
         <main>
           <div className="movies-list">
             {movies.map(movie => (
