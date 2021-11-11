@@ -10,11 +10,14 @@ interface GenreResponseProps {
   title: string;
 }
 
-export function SideBar(props) {
-  // Complete aqui
+interface SideBarProps {
+  genreId: number;
+  clickHandle: (id:number) => void;
+}
+
+export function SideBar(props:SideBarProps) {
 
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
-  //const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
 
   useEffect(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
