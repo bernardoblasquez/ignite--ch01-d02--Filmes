@@ -25,20 +25,26 @@ export function SideBar(props:SideBarProps) {
     });
   }, []);
 
+  const ButtonList = () => {
+    return(
+      genres.map(genre => (
+        <Button
+          key={String(genre.id)}
+          title={genre.title}
+          iconName={genre.name}
+          onClick={() => props.clickHandle(genre.id)}
+          selected ={props.genreId === genre.id}
+        />
+      ))
+    )
+  }
+
   return(
     <nav className="sidebar">
         <span>Watch<p>Me</p></span>
 
         <div className="buttons-container">
-          {genres.map(genre => (
-            <Button
-              key={String(genre.id)}
-              title={genre.title}
-              iconName={genre.name}
-              onClick={() => props.clickHandle(genre.id)}
-              selected ={props.genreId === genre.id}
-            />
-          ))}
+          { ButtonList() }
         </div>
       </nav>
 

@@ -43,14 +43,25 @@ export function Content(props:ContentProps) {
     })
   }, [props.genreId]);
 
+  const MovieList = () => {
+    return (
+      movies.map(movie => (
+        <MovieCard 
+          key={movie.imdbID} 
+          title={movie.Title} 
+          poster={movie.Poster} 
+          runtime={movie.Runtime} 
+          rating={movie.Ratings[0].Value} />
+      ))
+    )
+  }
+
   return (
     <div className="container">
         <ContentHeader className="category" genreTitle={selectedGenre.title} />
         <main>
           <div className="movies-list">
-            {movies.map(movie => (
-              <MovieCard key ={movie.imdbID} title={movie.Title} poster={movie.Poster} runtime={movie.Runtime} rating={movie.Ratings[0].Value} />
-            ))}
+            { MovieList() }
           </div>
         </main>
       </div>
